@@ -35,10 +35,7 @@ export const imageSchema = z.string()
   .describe('The image to deploy the instance from (e.g. linode/debian11)');
 
 // Simple IP address schema (string only, not the complex object)
-const ipAddressRegex = /^(?:\\d{1,3}(?:\\.\\d{1,3}){3}|\\[[0-9a-fA-F:]+\\]|[0-9a-fA-F:]+)$/;
-
-export const ipAddressStringSchema = z.string()
-  .regex(ipAddressRegex, 'Must be a valid IPv4 or IPv6 address')
+export const ipAddressStringSchema = z.string().ip()
   .describe('A valid IPv4 or IPv6 address');
 
 // CIDR block schema

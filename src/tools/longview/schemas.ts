@@ -89,20 +89,20 @@ export const LongviewDataSchema = z.object({
     swap_used: z.number(),
     swap_free: z.number()
   }),
-  network: z.record(z.string(), z.object({
+  network: z.record(z.object({
     rx_bytes: z.number(),
     tx_bytes: z.number(),
     rx_packets: z.number(),
     tx_packets: z.number()
   })),
-  disk: z.record(z.string(), z.object({
+  disk: z.record(z.object({
     fs: z.string(),
     mount_point: z.string(),
     total: z.number(),
     used: z.number(),
     free: z.number()
   })),
-  processes: z.record(z.string(), z.object({
+  processes: z.record(z.object({
     user: z.string(),
     count: z.number(),
     cpu: z.number(),
