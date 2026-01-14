@@ -413,7 +413,7 @@ export const verifyPhoneNumberSchema = z.object({
 
 // User Preferences schemas
 export const UserPreferencesSchema = z.object({
-  sortKeys: z.record(z.string()).optional(),
+  sortKeys: z.record(z.string(), z.string()).optional(),
   timezone: z.string().optional(),
   email_notifications: z.boolean().optional(),
   default_from_email: z.string().optional(),
@@ -427,7 +427,7 @@ export const getUserPreferencesSchema = z.object({});
 
 // Update User Preferences schema
 export const updateUserPreferencesSchema = z.object({
-  sortKeys: z.record(z.string()).optional().describe('Sort keys for different views'),
+  sortKeys: z.record(z.string(), z.string()).optional().describe('Sort keys for different views'),
   timezone: z.string().optional().describe('Your timezone in IANA format (e.g. America/New_York)'),
   email_notifications: z.boolean().optional().describe('Whether you want to receive email notifications'),
   default_from_email: z.string().optional().describe('Default email to use as from address'),
