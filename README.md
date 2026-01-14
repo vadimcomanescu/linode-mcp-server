@@ -1,9 +1,9 @@
 # Linode MCP Server
 
-[![main version](https://img.shields.io/github/package-json/v/takashito/linode-mcp-server?color=blue)](https://github.com/takashito/linode-mcp-server)
-[![npm version](https://img.shields.io/npm/v/%40takashito%2Flinode-mcp-server)](https://www.npmjs.com/package/@takashito/linode-mcp-server)
-[![npm downloads](https://img.shields.io/npm/d18m/%40takashito%2Flinode-mcp-server)](https://www.npmjs.com/package/@takashito/linode-mcp-server)
-[![smithery badge](https://smithery.ai/badge/@takashito/linode-mcp-server)](https://smithery.ai/server/@takashito/linode-mcp-server)
+[![main version](https://img.shields.io/github/package-json/v/vadimcomanescu/linode-mcp-server?color=blue)](https://github.com/vadimcomanescu/linode-mcp-server)
+[![npm version](https://img.shields.io/npm/v/%40vadimcomanescu%2Flinode-mcp-server)](https://www.npmjs.com/package/@vadimcomanescu/linode-mcp-server)
+[![npm downloads](https://img.shields.io/npm/d18m/%40vadimcomanescu%2Flinode-mcp-server)](https://www.npmjs.com/package/@vadimcomanescu/linode-mcp-server)
+[![smithery badge](https://smithery.ai/badge/@vadimcomanescu/linode-mcp-server)](https://smithery.ai/server/@vadimcomanescu/linode-mcp-server)
 
 An MCP (Model Context Protocol) server that connects your AI Assistant or Agent to your Linode cloud infrastructure allowing you to manage your cloud resources through natural conversation. Built with FastMCP framework and supports stdio, SSE, and HTTP streaming transports!
 
@@ -45,7 +45,7 @@ You'll need a Linode API token to use this server. Create one in your [Linode Cl
 
 ```bash
 # Start the server with your API token
-npx @takashito/linode-mcp-server --token YOUR_LINODE_API_TOKEN
+npx @vadimcomanescu/linode-mcp-server --token YOUR_LINODE_API_TOKEN
 ```
 
 ### Setting Your API Token
@@ -54,13 +54,13 @@ You can provide your token in several ways:
 
 1. **Command line option:**
    ```bash
-   npx @takashito/linode-mcp-server --token YOUR_LINODE_API_TOKEN
+   npx @vadimcomanescu/linode-mcp-server --token YOUR_LINODE_API_TOKEN
    ```
 
 2. **Environment variable:**
    ```bash
    export LINODE_API_TOKEN=your_token_here
-   npx @takashito/linode-mcp-server
+   npx @vadimcomanescu/linode-mcp-server
    ```
 
 3. **Environment file:**
@@ -70,7 +70,7 @@ You can provide your token in several ways:
    ```
    Then run:
    ```bash
-   npx @takashito/linode-mcp-server
+   npx @vadimcomanescu/linode-mcp-server
    ```
 
 ### Connecting to AI Clients
@@ -80,14 +80,14 @@ Codex reads MCP servers from `~/.codex/config.toml` and shares that config betwe
 
 ```bash
 # Add via CLI (stdio)
-codex mcp add linode --env LINODE_API_TOKEN=YOUR_LINODE_API_TOKEN -- npx -y @takashito/linode-mcp-server
+codex mcp add linode --env LINODE_API_TOKEN=YOUR_LINODE_API_TOKEN -- npx -y @vadimcomanescu/linode-mcp-server
 ```
 
 ```toml
 # Or add in ~/.codex/config.toml
 [mcp_servers.linode]
 command = "npx"
-args = ["-y", "@takashito/linode-mcp-server", "--token", "YOUR_LINODE_API_TOKEN"]
+args = ["-y", "@vadimcomanescu/linode-mcp-server", "--token", "YOUR_LINODE_API_TOKEN"]
 ```
 
 #### Claude Desktop
@@ -97,7 +97,7 @@ Open Claude settings > Developer > Edit Config:
   "mcpServers": {
     "linode": {
       "command": "npx",
-      "args": ["-y", "@takashito/linode-mcp-server", "--token", "YOUR_LINODE_API_TOKEN"]
+      "args": ["-y", "@vadimcomanescu/linode-mcp-server", "--token", "YOUR_LINODE_API_TOKEN"]
     }
   }
 }
@@ -110,7 +110,7 @@ Add to your settings.json:
   "mcpServers": {
     "linode": {
       "command": "npx",
-      "args": ["-y", "@takashito/linode-mcp-server", "--token", "YOUR_LINODE_API_TOKEN", "--categories", "instances,volumes,regions"]
+      "args": ["-y", "@vadimcomanescu/linode-mcp-server", "--token", "YOUR_LINODE_API_TOKEN", "--categories", "instances,volumes,regions"]
     }
   }
 }
@@ -119,10 +119,10 @@ Add to your settings.json:
 
 ### Automatic Installation via Smithery to Claude Desktop
 
-For the easiest setup, use [Smithery](https://smithery.ai/server/@takashito/linode-mcp-server):
+For the easiest setup, use [Smithery](https://smithery.ai/server/@vadimcomanescu/linode-mcp-server):
 
 ```bash
-npx -y @smithery/cli install @takashito/linode-mcp-server --client claude
+npx -y @smithery/cli install @vadimcomanescu/linode-mcp-server --client claude
 ```
 
 ## Tools Category Selection
@@ -131,7 +131,7 @@ You can selectively enabled tools with --categories parameter:
 
 ```bash
 # Enable only instances and volumes tools
-npx @takashito/linode-mcp-server --token YOUR_TOKEN --categories instances,volumes
+npx @vadimcomanescu/linode-mcp-server --token YOUR_TOKEN --categories instances,volumes
 ```
 
 Or in Claude Desktop config:
@@ -143,7 +143,7 @@ Or in Claude Desktop config:
       "command": "npx",
       "args": [
         "-y",
-        "@takashito/linode-mcp-server",
+        "@vadimcomanescu/linode-mcp-server",
         "--token", 
         "YOUR_LINODE_API_TOKEN",
         "--categories",
@@ -158,7 +158,7 @@ Available categories: instances, volumes, networking, nodebalancers, regions, pl
 To see all available categories:
 
 ```bash
-npx @takashito/linode-mcp-server --list-categories
+npx @vadimcomanescu/linode-mcp-server --list-categories
 ```
 
 ## Transport Options
@@ -166,19 +166,19 @@ npx @takashito/linode-mcp-server --list-categories
 1. **stdio transport** - Default transport compatible with Claude Desktop
    ```bash
    # Default stdio transport
-   npx @takashito/linode-mcp-server --token YOUR_TOKEN
+   npx @vadimcomanescu/linode-mcp-server --token YOUR_TOKEN
    ```
 
 2. **SSE transport** - Server-Sent Events transport for web clients
    ```bash
    # Start with SSE transport on port 3000 /sse
-   npx @takashito/linode-mcp-server --token YOUR_TOKEN --transport sse --port 3000 --endpoint /sse
+   npx @vadimcomanescu/linode-mcp-server --token YOUR_TOKEN --transport sse --port 3000 --endpoint /sse
    ```
 
 3. **httpStream transport** - HTTP streaming transport for web clients
    ```bash
    # Start with HTTP streaming transport on port 8080 /mcp
-   npx @takashito/linode-mcp-server --token YOUR_TOKEN --transport http --port 8080 --endpoint /mcp
+   npx @vadimcomanescu/linode-mcp-server --token YOUR_TOKEN --transport http --port 8080 --endpoint /mcp
    ```
 
 You can customize port and host for both SSE and HTTP streaming transport:
@@ -192,7 +192,7 @@ For http / sse transport, you can run mcp server without --token parameter.
 
    ```bash
    # Start with HTTP streaming transport on port 8080 /mcp at localhost
-   npx @takashito/linode-mcp-server --transport http
+   npx @vadimcomanescu/linode-mcp-server --transport http
    ```
 
 Configure your mcp client to add Authorization Header. linode-mcp-server forward this API token to access Linode API at backend.
