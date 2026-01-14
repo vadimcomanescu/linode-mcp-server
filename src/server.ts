@@ -1,4 +1,5 @@
 import { FastMCP, FastMCPSession } from 'fastmcp';
+import { Server as McpServer } from '@modelcontextprotocol/sdk/server/index.js';
 import { IncomingHttpHeaders } from "http";
 import { registerAllTools, ToolCategory } from './tools';
 import { createClient, LinodeClient } from './client';
@@ -20,6 +21,7 @@ export interface SessionData {
 }
 
 let didPatchFastMcp = false;
+let didPatchMcpCapabilities = false;
 
 function patchFastMcpForCodex() {
   if (didPatchFastMcp) {
@@ -43,6 +45,27 @@ function patchFastMcpForCodex() {
   didPatchFastMcp = true;
 }
 
+function patchMcpCapabilitiesForCodex() {
+  if (didPatchMcpCapabilities) {
+    return;
+  }
+
+  const originalGetCapabilities = (McpServer.prototype as any).getCapabilities;
+
+  (McpServer.prototype as any).getCapabilities = function () {
+    const capabilities = originalGetCapabilities.call(this) || {};
+    if (capabilities.completions) {
+      return capabilities;
+    }
+    return {
+      ...capabilities,
+      completions: {}
+    };
+  };
+
+  didPatchMcpCapabilities = true;
+}
+
 /**
  * Creates and starts a Linode MCP Server
  * @param options Server configuration options
@@ -53,6 +76,7 @@ export async function startServer(options: ServerOptions) {
   
   try {
     patchFastMcpForCodex();
+    patchMcpCapabilitiesForCodex();
 
     // Initialize FastMCP server
     const server = new FastMCP({
@@ -60,7 +84,7 @@ export async function startServer(options: ServerOptions) {
       version: VERSION,
       authenticate: async (request: any): Promise<SessionData> => {
         return {
-          headers: request.headers
+          headers: request?.headers ?? {}
         };
       }
     });
@@ -86,27 +110,20 @@ export async function startServer(options: ServerOptions) {
     const transport = options.transport || 'stdio';
     console.error(`Starting server with transport: ${transport}`);
     
-    if (transport === 'http') {
-      const port = options.port || 8080;
-      const host = options.host || '127.0.0.1';
-      const endpoint = (options.endpoint || '/mcp') as `/${string}`;
-      console.error(`Starting HTTP server on ${host}:${port}${endpoint}`);
+  if (transport === 'http') {
+    const port = options.port || 8080;
+    const host = options.host || '127.0.0.1';
+    const endpoint = (options.endpoint || '/mcp') as `/${string}`;
+    console.error(`Starting HTTP server on ${host}:${port}${endpoint}`);
       
-      server.start({
-        transportType: 'httpStream',
-        httpStream: { port, endpoint }
-      });
-    } else if (transport === 'sse') {
-      const port = options.port || 3000;
-      const host = options.host || '127.0.0.1';
-      const endpoint = (options.endpoint || '/sse') as `/${string}`;
-      console.error(`Starting SSE server on ${host}:${port}${endpoint}`);
-      
-      server.start({
-        transportType: 'sse',
-        sse: { port, endpoint }
-      });
-    } else {
+    server.start({
+      transportType: 'httpStream',
+      httpStream: { port, endpoint }
+    });
+  } else if (transport === 'sse') {
+    console.error('Error: SSE transport is no longer supported. Use stdio or http.');
+    process.exit(1);
+  } else {
       // Default to stdio
       console.error('Starting stdio server');
       server.start({
