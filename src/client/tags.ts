@@ -51,7 +51,7 @@ export interface TagsClient {
    * @param label - The label of the Tag to delete
    * @returns Empty response on success
    */
-  deleteTag(label: string): Promise<{}>;
+  deleteTag(label: string): Promise<object>;
 }
 
 /**
@@ -76,7 +76,7 @@ export function createTagsClient(axios: AxiosInstance): TagsClient {
       return response.data;
     },
 
-    async deleteTag(label: string): Promise<{}> {
+    async deleteTag(label: string): Promise<object> {
       const response = await axios.delete(`/tags/${encodeURIComponent(label)}`);
       return response.data;
     }

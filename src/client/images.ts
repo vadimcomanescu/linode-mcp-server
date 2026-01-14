@@ -85,12 +85,12 @@ export interface ImagesClient {
   /**
    * Delete an image
    */
-  deleteImage(imageId: string): Promise<{}>;
+  deleteImage(imageId: string): Promise<object>;
 
   /**
    * Replicate an image to other regions
    */
-  replicateImage(imageId: string, data: ReplicateImageRequest): Promise<{}>;
+  replicateImage(imageId: string, data: ReplicateImageRequest): Promise<object>;
 }
 
 /**
@@ -123,12 +123,12 @@ export function createImagesClient(axios: AxiosInstance): ImagesClient {
       return response.data;
     },
 
-    async deleteImage(imageId: string): Promise<{}> {
+    async deleteImage(imageId: string): Promise<object> {
       const response = await axios.delete(`/images/${imageId}`);
       return response.data;
     },
 
-    async replicateImage(imageId: string, data: ReplicateImageRequest): Promise<{}> {
+    async replicateImage(imageId: string, data: ReplicateImageRequest): Promise<object> {
       const response = await axios.post(`/images/${imageId}/regions`, data);
       return response.data;
     }

@@ -56,10 +56,10 @@ export interface LinodeVolumesClient {
   getVolumeById: (id: number) => Promise<Volume>;
   createVolume: (data: CreateVolumeRequest) => Promise<Volume>;
   updateVolume: (id: number, data: UpdateVolumeRequest) => Promise<Volume>;
-  deleteVolume: (id: number) => Promise<{}>;
-  attachVolume: (id: number, data: AttachVolumeRequest) => Promise<{}>;
-  detachVolume: (id: number) => Promise<{}>;
-  resizeVolume: (id: number, data: ResizeVolumeRequest) => Promise<{}>;
+  deleteVolume: (id: number) => Promise<object>;
+  attachVolume: (id: number, data: AttachVolumeRequest) => Promise<object>;
+  detachVolume: (id: number) => Promise<object>;
+  resizeVolume: (id: number, data: ResizeVolumeRequest) => Promise<object>;
   cloneVolume: (id: number, data: CloneVolumeRequest) => Promise<Volume>;
   
   // Volume type operations

@@ -84,7 +84,7 @@ export interface StackScriptsClient {
    * @param id - The ID of the StackScript to delete
    * @returns Empty response on success
    */
-  deleteStackScript(id: number): Promise<{}>;
+  deleteStackScript(id: number): Promise<object>;
 }
 
 /**
@@ -131,7 +131,7 @@ export function createStackScriptsClient(axios: AxiosInstance): StackScriptsClie
       return response.data;
     },
 
-    async deleteStackScript(id: number): Promise<{}> {
+    async deleteStackScript(id: number): Promise<object> {
       const response = await axios.delete(`/linode/stackscripts/${id}`);
       return response.data;
     }

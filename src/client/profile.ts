@@ -182,8 +182,8 @@ export interface ProfileClientInterface {
   
   // Two-Factor Auth operations
   getTwoFactorSecret(): Promise<TwoFactorResponse>;
-  enableTwoFactor(data: TwoFactorConfirmRequest): Promise<{}>;
-  disableTwoFactor(data: TwoFactorConfirmRequest): Promise<{}>;
+  enableTwoFactor(data: TwoFactorConfirmRequest): Promise<object>;
+  disableTwoFactor(data: TwoFactorConfirmRequest): Promise<object>;
   
   // Authorized Apps operations
   getAuthorizedApps(params?: PaginationParams): Promise<PaginatedResponse<AuthorizedApp>>;
@@ -204,8 +204,8 @@ export interface ProfileClientInterface {
   
   // Phone Number operations
   deletePhoneNumber(): Promise<void>;
-  sendPhoneVerification(data: PhoneVerificationPayload): Promise<{}>;
-  verifyPhoneNumber(data: PhoneVerificationConfirmPayload): Promise<{}>;
+  sendPhoneVerification(data: PhoneVerificationPayload): Promise<object>;
+  verifyPhoneNumber(data: PhoneVerificationConfirmPayload): Promise<object>;
   
   // User Preferences operations
   getUserPreferences(): Promise<UserPreferences>;
@@ -213,7 +213,7 @@ export interface ProfileClientInterface {
   
   // Security Questions operations
   getSecurityQuestions(): Promise<SecurityQuestion[]>;
-  answerSecurityQuestions(data: SecurityQuestionAnswer[]): Promise<{}>;
+  answerSecurityQuestions(data: SecurityQuestionAnswer[]): Promise<object>;
 }
 
 export function createProfileClient(axiosInstance: AxiosInstance): ProfileClientInterface {

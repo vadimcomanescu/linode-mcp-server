@@ -297,61 +297,61 @@ export interface LinodeInstancesClient {
   getLinodeById: (id: number) => Promise<LinodeInstance>;
   createLinode: (data: CreateLinodeRequest) => Promise<LinodeInstance>;
   updateLinode: (id: number, data: UpdateLinodeRequest) => Promise<LinodeInstance>;
-  deleteLinode: (id: number) => Promise<{}>;
-  bootLinode: (id: number, configId?: number) => Promise<{}>;
-  rebootLinode: (id: number, configId?: number) => Promise<{}>;
-  shutdownLinode: (id: number) => Promise<{}>;
-  resizeLinode: (id: number, data: ResizeLinodeRequest) => Promise<{}>;
+  deleteLinode: (id: number) => Promise<object>;
+  bootLinode: (id: number, configId?: number) => Promise<object>;
+  rebootLinode: (id: number, configId?: number) => Promise<object>;
+  shutdownLinode: (id: number) => Promise<object>;
+  resizeLinode: (id: number, data: ResizeLinodeRequest) => Promise<object>;
   cloneLinode: (id: number, data: CloneLinodeRequest) => Promise<LinodeInstance>;
   rebuildLinode: (id: number, data: RebuildLinodeRequest) => Promise<LinodeInstance>;
-  rescueLinode: (id: number, devices: Record<string, number>) => Promise<{}>;
-  migrateLinode: (id: number, data?: MigrateLinodeRequest) => Promise<{}>;
-  mutateLinode: (id: number) => Promise<{}>;
-  resetRootPassword: (id: number, data: ResetRootPasswordRequest) => Promise<{}>;
+  rescueLinode: (id: number, devices: Record<string, number>) => Promise<object>;
+  migrateLinode: (id: number, data?: MigrateLinodeRequest) => Promise<object>;
+  mutateLinode: (id: number) => Promise<object>;
+  resetRootPassword: (id: number, data: ResetRootPasswordRequest) => Promise<object>;
   
   // Config operations
   getLinodeConfigs: (linodeId: number, params?: PaginationParams) => Promise<PaginatedResponse<LinodeConfig>>;
   getLinodeConfig: (linodeId: number, configId: number) => Promise<LinodeConfig>;
   createLinodeConfig: (linodeId: number, data: CreateLinodeConfigRequest) => Promise<LinodeConfig>;
   updateLinodeConfig: (linodeId: number, configId: number, data: Partial<CreateLinodeConfigRequest>) => Promise<LinodeConfig>;
-  deleteLinodeConfig: (linodeId: number, configId: number) => Promise<{}>;
+  deleteLinodeConfig: (linodeId: number, configId: number) => Promise<object>;
   
   // Config Interface operations
   getConfigInterfaces: (linodeId: number, configId: number) => Promise<PaginatedResponse<ConfigInterface>>;
   getConfigInterface: (linodeId: number, configId: number, interfaceId: number) => Promise<ConfigInterface>;
   createConfigInterface: (linodeId: number, configId: number, data: CreateConfigInterfaceRequest) => Promise<ConfigInterface>;
   updateConfigInterface: (linodeId: number, configId: number, interfaceId: number, data: UpdateConfigInterfaceRequest) => Promise<ConfigInterface>;
-  deleteConfigInterface: (linodeId: number, configId: number, interfaceId: number) => Promise<{}>;
-  reorderConfigInterfaces: (linodeId: number, configId: number, data: ConfigInterfaceOrderRequest) => Promise<{}>;
+  deleteConfigInterface: (linodeId: number, configId: number, interfaceId: number) => Promise<object>;
+  reorderConfigInterfaces: (linodeId: number, configId: number, data: ConfigInterfaceOrderRequest) => Promise<object>;
   
   // Disk operations
   getLinodeDisks: (linodeId: number, params?: PaginationParams) => Promise<PaginatedResponse<LinodeDisk>>;
   getLinodeDisk: (linodeId: number, diskId: number) => Promise<LinodeDisk>;
   createLinodeDisk: (linodeId: number, data: CreateLinodeDiskRequest) => Promise<LinodeDisk>;
   updateLinodeDisk: (linodeId: number, diskId: number, data: Partial<CreateLinodeDiskRequest>) => Promise<LinodeDisk>;
-  deleteLinodeDisk: (linodeId: number, diskId: number) => Promise<{}>;
-  resizeLinodeDisk: (linodeId: number, diskId: number, size: number) => Promise<{}>;
+  deleteLinodeDisk: (linodeId: number, diskId: number) => Promise<object>;
+  resizeLinodeDisk: (linodeId: number, diskId: number, size: number) => Promise<object>;
   cloneDisk: (linodeId: number, diskId: number, data?: CloneDiskRequest) => Promise<LinodeDisk>;
-  resetDiskPassword: (linodeId: number, diskId: number, password: string) => Promise<{}>;
+  resetDiskPassword: (linodeId: number, diskId: number, password: string) => Promise<object>;
   
   // Backup operations
   getBackups: (linodeId: number) => Promise<{ automatic: Backup[]; snapshot: { current: Backup | null; in_progress: Backup | null } }>;
   getBackup: (linodeId: number, backupId: number) => Promise<Backup>;
   createSnapshot: (linodeId: number, data: CreateSnapshotRequest) => Promise<Backup>;
-  cancelBackups: (linodeId: number) => Promise<{}>;
-  enableBackups: (linodeId: number) => Promise<{}>;
-  restoreBackup: (linodeId: number, backupId: number, data?: RestoreBackupRequest) => Promise<{}>;
+  cancelBackups: (linodeId: number) => Promise<object>;
+  enableBackups: (linodeId: number) => Promise<object>;
+  restoreBackup: (linodeId: number, backupId: number, data?: RestoreBackupRequest) => Promise<object>;
   
   // IP operations
   getLinodeIPs: (linodeId: number) => Promise<any>; // Define IP response type if needed
   allocateIP: (linodeId: number, data: LinodeIPAllocationRequest) => Promise<any>; // Define IP allocation response type if needed
   getLinodeIP: (linodeId: number, address: string) => Promise<any>; // Define IP response type if needed
   updateLinodeIP: (linodeId: number, address: string, data: LinodeIPUpdateRequest) => Promise<any>; // Define IP response type if needed
-  deleteLinodeIP: (linodeId: number, address: string) => Promise<{}>;
+  deleteLinodeIP: (linodeId: number, address: string) => Promise<object>;
   
   // Firewall operations
   getLinodeFirewalls: (linodeId: number, params?: PaginationParams) => Promise<PaginatedResponse<any>>; // Define Firewall type if needed
-  applyFirewalls: (linodeId: number) => Promise<{}>;
+  applyFirewalls: (linodeId: number) => Promise<object>;
   
   // Transfer and stats operations
   getLinodeStats: (id: number) => Promise<any>; // Define stats type if needed

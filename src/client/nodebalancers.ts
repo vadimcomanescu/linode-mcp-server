@@ -132,22 +132,22 @@ export interface LinodeNodeBalancersClient {
   getNodeBalancer: (id: number) => Promise<NodeBalancer>;
   createNodeBalancer: (data: CreateNodeBalancerRequest) => Promise<NodeBalancer>;
   updateNodeBalancer: (id: number, data: UpdateNodeBalancerRequest) => Promise<NodeBalancer>;
-  deleteNodeBalancer: (id: number) => Promise<{}>;
+  deleteNodeBalancer: (id: number) => Promise<object>;
   
   // NodeBalancer Config operations
   getNodeBalancerConfigs: (nodeBalancerId: number) => Promise<PaginatedResponse<NodeBalancerConfig>>;
   getNodeBalancerConfig: (nodeBalancerId: number, configId: number) => Promise<NodeBalancerConfig>;
   createNodeBalancerConfig: (nodeBalancerId: number, data: CreateNodeBalancerConfigRequest) => Promise<NodeBalancerConfig>;
   updateNodeBalancerConfig: (nodeBalancerId: number, configId: number, data: UpdateNodeBalancerConfigRequest) => Promise<NodeBalancerConfig>;
-  deleteNodeBalancerConfig: (nodeBalancerId: number, configId: number) => Promise<{}>;
-  rebuildNodeBalancerConfig: (nodeBalancerId: number, configId: number) => Promise<{}>;
+  deleteNodeBalancerConfig: (nodeBalancerId: number, configId: number) => Promise<object>;
+  rebuildNodeBalancerConfig: (nodeBalancerId: number, configId: number) => Promise<object>;
   
   // NodeBalancer Node operations
   getNodeBalancerConfigNodes: (nodeBalancerId: number, configId: number) => Promise<PaginatedResponse<NodeBalancerNode>>;
   getNodeBalancerConfigNode: (nodeBalancerId: number, configId: number, nodeId: number) => Promise<NodeBalancerNode>;
   createNodeBalancerConfigNode: (nodeBalancerId: number, configId: number, data: CreateNodeBalancerNodeRequest) => Promise<NodeBalancerNode>;
   updateNodeBalancerConfigNode: (nodeBalancerId: number, configId: number, nodeId: number, data: UpdateNodeBalancerNodeRequest) => Promise<NodeBalancerNode>;
-  deleteNodeBalancerConfigNode: (nodeBalancerId: number, configId: number, nodeId: number) => Promise<{}>;
+  deleteNodeBalancerConfigNode: (nodeBalancerId: number, configId: number, nodeId: number) => Promise<object>;
   
   // NodeBalancer Stats operations
   getNodeBalancerStats: (id: number) => Promise<any>; // Define stats type if needed

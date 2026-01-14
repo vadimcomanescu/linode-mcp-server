@@ -134,7 +134,7 @@ export interface LinodeNetworkingClient {
   getIPAddress: (address: string) => Promise<IPAddress>;
   updateIPAddress: (address: string, data: UpdateIPRequest) => Promise<IPAddress>;
   allocateIPAddress: (data: AllocateIPRequest) => Promise<IPAddress>;
-  shareIPAddresses: (data: ShareIPsRequest) => Promise<{}>;
+  shareIPAddresses: (data: ShareIPsRequest) => Promise<object>;
   
   // IPv6 operations
   getIPv6Ranges: () => Promise<PaginatedResponse<IPv6Range>>;
@@ -146,10 +146,10 @@ export interface LinodeNetworkingClient {
   getFirewall: (id: number) => Promise<Firewall>;
   createFirewall: (data: CreateFirewallRequest) => Promise<Firewall>;
   updateFirewall: (id: number, data: UpdateFirewallRequest) => Promise<Firewall>;
-  deleteFirewall: (id: number) => Promise<{}>;
+  deleteFirewall: (id: number) => Promise<object>;
   getFirewallDevices: (firewallId: number) => Promise<PaginatedResponse<FirewallDevice>>;
   createFirewallDevice: (firewallId: number, data: CreateFirewallDeviceRequest) => Promise<FirewallDevice>;
-  deleteFirewallDevice: (firewallId: number, deviceId: number) => Promise<{}>;
+  deleteFirewallDevice: (firewallId: number, deviceId: number) => Promise<object>;
   getFirewallRules: (firewallId: number) => Promise<{
     inbound: FirewallRule[];
     outbound: FirewallRule[];

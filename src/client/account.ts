@@ -347,14 +347,14 @@ export interface AccountClientInterface {
   
   // Agreements operations
   getAgreements(): Promise<Agreement[]>;
-  acknowledgeAgreements(data: AcknowledgeAgreementRequest): Promise<{}>;
+  acknowledgeAgreements(data: AcknowledgeAgreementRequest): Promise<object>;
   
   // Service availability operations
   getServiceAvailability(): Promise<ServiceAvailability[]>;
   getRegionServiceAvailability(regionId: string): Promise<RegionServiceAvailability>;
   
   // Account cancellation
-  cancelAccount(data: CancelAccountRequest): Promise<{}>;
+  cancelAccount(data: CancelAccountRequest): Promise<object>;
   
   // Child account operations
   getChildAccounts(params?: PaginationParams): Promise<PaginatedResponse<ChildAccount>>;
@@ -364,8 +364,8 @@ export interface AccountClientInterface {
   // Event operations
   getEvents(params?: PaginationParams): Promise<PaginatedResponse<AccountEvent>>;
   getEvent(eventId: number): Promise<AccountEvent>;
-  markEventAsRead(eventId: number): Promise<{}>;
-  markEventAsSeen(eventId: number): Promise<{}>;
+  markEventAsRead(eventId: number): Promise<object>;
+  markEventAsSeen(eventId: number): Promise<object>;
   
   // Invoice operations
   getInvoices(params?: PaginationParams): Promise<PaginatedResponse<Invoice>>;
@@ -390,12 +390,12 @@ export interface AccountClientInterface {
   updateOAuthClient(clientId: string, data: UpdateOAuthClientRequest): Promise<OAuthClient>;
   resetOAuthClientSecret(clientId: string): Promise<OAuthClientSecret>;
   getOAuthClientThumbnail(clientId: string): Promise<any>; // Binary data
-  updateOAuthClientThumbnail(clientId: string, thumbnailData: any): Promise<{}>; // Binary data
+  updateOAuthClientThumbnail(clientId: string, thumbnailData: any): Promise<object>; // Binary data
   
   // Account settings operations
   getAccountSettings(): Promise<AccountSettings>;
   updateAccountSettings(data: UpdateAccountSettingsRequest): Promise<AccountSettings>;
-  enableManagedService(): Promise<{}>;
+  enableManagedService(): Promise<object>;
   
   // Network transfer operations
   getNetworkTransfer(): Promise<AccountNetworkTransfer>;
