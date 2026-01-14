@@ -1,4 +1,4 @@
-import { FastMCP } from 'fastmcp';
+import { FastMCP, FastMCPSession } from 'fastmcp';
 import { IncomingHttpHeaders } from "http";
 import { registerAllTools, ToolCategory } from './tools';
 import { createClient, LinodeClient } from './client';
@@ -19,6 +19,30 @@ export interface SessionData {
   [key: string]: unknown; // Add index signature to satisfy Record<string, unknown>
 }
 
+let didPatchFastMcp = false;
+
+function patchFastMcpForCodex() {
+  if (didPatchFastMcp) {
+    return;
+  }
+
+  const originalConnect = FastMCPSession.prototype.connect;
+
+  FastMCPSession.prototype.connect = async function (
+    transport: Parameters<FastMCPSession['connect']>[0]
+  ) {
+    try {
+      this.server.registerCapabilities({ completions: {} });
+    } catch (error) {
+      console.error('[FastMCP warning] failed to register completions capability', error);
+    }
+
+    return originalConnect.call(this, transport);
+  };
+
+  didPatchFastMcp = true;
+}
+
 /**
  * Creates and starts a Linode MCP Server
  * @param options Server configuration options
@@ -28,6 +52,8 @@ export async function startServer(options: ServerOptions) {
   console.error('Starting Linode MCP server...');
   
   try {
+    patchFastMcpForCodex();
+
     // Initialize FastMCP server
     const server = new FastMCP({
       name: 'linode-mcp-server',

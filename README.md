@@ -75,6 +75,21 @@ You can provide your token in several ways:
 
 ### Connecting to AI Clients
 
+#### Codex CLI / IDE
+Codex reads MCP servers from `~/.codex/config.toml` and shares that config between the CLI and IDE extension. You can add this server either via the CLI or by editing the TOML directly:
+
+```bash
+# Add via CLI (stdio)
+codex mcp add linode --env LINODE_API_TOKEN=YOUR_LINODE_API_TOKEN -- npx -y @takashito/linode-mcp-server
+```
+
+```toml
+# Or add in ~/.codex/config.toml
+[mcp_servers.linode]
+command = "npx"
+args = ["-y", "@takashito/linode-mcp-server", "--token", "YOUR_LINODE_API_TOKEN"]
+```
+
 #### Claude Desktop
 Open Claude settings > Developer > Edit Config:
 ```json
