@@ -9,7 +9,7 @@ An MCP (Model Context Protocol) server that connects your AI Assistant or Agent 
 
 ## What Can You Do With This?
 
-Ask Claude Desktop or VSCode Copilot Agent to help you with tasks like:
+Ask Codex, Claude Code, Cursor, or OpenCode to help you with tasks like:
 - "Show me all my instances in the Frankfurt region"
 - "Create a new instance in Osaka"
 - "Create a load balancer for my web servers"
