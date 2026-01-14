@@ -19,7 +19,11 @@
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
     "lint": "eslint .",
-    "inspect": "tsc && npx @modelcontextprotocol/inspector node dist/index.js"
+    "inspect": "tsc && npx @modelcontextprotocol/inspector node dist/index.js",
+    "release:patch": "node scripts/release.mjs patch",
+    "release:minor": "node scripts/release.mjs minor",
+    "release:major": "node scripts/release.mjs major",
+    "release:dry-run": "node scripts/release.mjs patch --dry-run"
   },
   "keywords": [
     "linode",

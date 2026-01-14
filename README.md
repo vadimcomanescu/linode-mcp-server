@@ -679,3 +679,17 @@ Manage Linode account information, users, billing, and settings.
 ## License
 
 MIT
+
+## Releasing
+
+To keep the npm README and GitHub README in sync, publish only from a clean `main` that is fast-forwarded to `origin/main`.
+
+```bash
+# Patch release (recommended for docs-only changes)
+npm run release:patch
+```
+
+Options:
+- `npm run release:dry-run` (does everything except bump/publish/push)
+- `npm run release:patch -- --skip-lint` (skip lint step)
+- `npm run release:patch -- --dry-run --allow-dirty` (dry run even if you have local changes)
