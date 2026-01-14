@@ -1,10 +1,13 @@
 {
-  "name": "@takashito/linode-mcp-server",
+  "name": "@vadimcomanescu/linode-mcp-server",
   "version": "0.2.4",
   "description": "MCP server for Linode API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist/"
   ],
